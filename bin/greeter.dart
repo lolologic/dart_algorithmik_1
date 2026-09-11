@@ -7,11 +7,19 @@ void main() {
   int age = readAge();
   String gender = readGender();
 
-  print('Gültiger Vorname: $vorname');
-  print('Gültiger Nachname: $nachname');
+  if (age < 40) {
+    print('Hallo, $vorname!');
+  } else {
+    int hour = DateTime.now().hour;
+    String greeting = getGreeting(hour);  
 
-  print('Gültiges Alter: $age');
-  print('Gültiges Geschlecht: $gender');
+    if (gender == 'd') {
+      print('$greeting, $vorname $nachname');
+    } else {
+      String salutation = getSalutation(gender);
+      print('$greeting, $salutation $nachname');
+    }
+  }
 }
 
 String readName(String prompt) {
@@ -62,5 +70,26 @@ String readGender() {
     }
 
     print('Ungültige Eingabe.');
+  }
+}
+
+String getGreeting(int hour) {
+  
+  if (hour < 11) {
+    return 'Guten Morgen';
+  } else if (hour < 18) {
+    return 'Guten Tag';
+  } else {
+    return 'Guten Abend';
+  }
+}
+
+String getSalutation(String gender) {
+  if (gender == 'm') {
+    return 'Herr';
+  } else if (gender == 'w') {
+    return 'Frau';
+  } else {
+    return '';
   }
 }
