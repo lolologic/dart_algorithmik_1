@@ -42,9 +42,7 @@ int readAge() {
 
   while (age == null || age < 0 || age > 150) {
     stdout.write('Alter: ');
-
     String? input = stdin.readLineSync();
-
     age = int.tryParse(input ?? '');
 
     if (age == null || age < 0 || age > 150) {
@@ -85,6 +83,7 @@ String getGreeting(int hour) {
 }
 
 String getSalutation(String gender) {
+
   if (gender == 'm') {
     return 'Herr';
   } else if (gender == 'w') {
