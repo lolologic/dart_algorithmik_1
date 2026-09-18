@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'dart:math';
 
-void main(){
-
+void main() {
   int? max;
 
   while (max == null || max <= 0) {
     stdout.write('Anzahl der Würfe: ');
-    String? input = stdin.readLineSync();
+    final input = stdin.readLineSync();
     max = int.tryParse(input ?? '');
 
     if (max == null || max <= 0) {
@@ -15,13 +14,13 @@ void main(){
     }
   }
 
-  List<int> rolls = [];
-  int consecutiveSixes = 0;
+  final rolls = <int>[];
+  var consecutiveSixes = 0;
 
-  Random random = Random();
+  final random = Random();
 
   while (consecutiveSixes != 2 && rolls.length < max) {
-    int rolledNum = random.nextInt(6) + 1;
+    final rolledNum = random.nextInt(6) + 1;
     rolls.add(rolledNum);
 
     if (rolledNum == 6) {

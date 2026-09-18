@@ -1,24 +1,19 @@
 import 'dart:io';
 
 void main() {
-  String vorname = readName('Vorname: ');
-  String nachname = readName('Nachname: ');
+  final vorname = readName('Vorname: ');
+  final nachname = readName('Nachname: ');
 
-  int age = readAge();
-  String gender = readGender();
+  final age = readAge();
+  final gender = readGender();
 
   if (age < 40) {
     print('Hallo, $vorname!');
   } else {
-    int hour = DateTime.now().hour;
-    String greeting = getGreeting(hour);  
+    final hour = DateTime.now().hour;
+    final greeting = getGreeting(hour);
 
-    if (gender == 'd') {
-      print('$greeting, $vorname $nachname');
-    } else {
-      String salutation = getSalutation(gender);
-      print('$greeting, $salutation $nachname');
-    }
+    print('$greeting, ${gender.anrede} $nachname');
   }
 }
 
@@ -53,8 +48,24 @@ int readAge() {
   return age;
 }
 
-String readGender() {
+enum Gender {
+  male(anrede: 'Herr'),
+  female(anrede: 'Frau'),
+  diverse(anrede: '');
 
+  const Gender({required this.anrede});
+
+  static Gender fromShort(String short) => switch (short) {
+    'm' => Gender.male,
+    'w' => Gender.female,
+    'd' => Gender.diverse,
+    (_) => throw Exception('No matching gender found.'),
+  };
+
+  final String anrede;
+}
+
+Gender readGender() {
   while (true) {
     stdout.write('Geschlecht (m/w/d): ');
     String? input = stdin.readLineSync();
@@ -63,7 +74,7 @@ String readGender() {
       String gender = input.trim().toLowerCase();
 
       if (gender == 'm' || gender == 'w' || gender == 'd') {
-        return gender;
+        return Gender.fromShort(gender);
       }
     }
 
@@ -72,23 +83,11 @@ String readGender() {
 }
 
 String getGreeting(int hour) {
-  
   if (hour < 11) {
     return 'Guten Morgen';
   } else if (hour < 18) {
     return 'Guten Tag';
   } else {
     return 'Guten Abend';
-  }
-}
-
-String getSalutation(String gender) {
-
-  if (gender == 'm') {
-    return 'Herr';
-  } else if (gender == 'w') {
-    return 'Frau';
-  } else {
-    return '';
   }
 }
