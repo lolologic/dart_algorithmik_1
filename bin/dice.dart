@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
-void main(){
-
+void main() {
   int? max;
 
   while (max == null || max <= 0) {

@@ -11,7 +11,7 @@ void main() {
     print('Hallo, $vorname!');
   } else {
     int hour = DateTime.now().hour;
-    String greeting = getGreeting(hour);  
+    String greeting = getGreeting(hour);
 
     if (gender == 'd') {
       print('$greeting, $vorname $nachname');
@@ -54,7 +54,6 @@ int readAge() {
 }
 
 String readGender() {
-
   while (true) {
     stdout.write('Geschlecht (m/w/d): ');
     String? input = stdin.readLineSync();
@@ -72,7 +71,6 @@ String readGender() {
 }
 
 String getGreeting(int hour) {
-  
   if (hour < 11) {
     return 'Guten Morgen';
   } else if (hour < 18) {
@@ -83,7 +81,6 @@ String getGreeting(int hour) {
 }
 
 String getSalutation(String gender) {
-
   if (gender == 'm') {
     return 'Herr';
   } else if (gender == 'w') {
